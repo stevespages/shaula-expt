@@ -1,0 +1,19 @@
+Notes for Shaula website.
+
+1. Code for learning and debugging:
+
+<?php
+//some code for seeing what types of objects you have and what is going on.
+echo "<pre><strong>\$statement:</strong></br>var_dump(\$statement):</br>";
+var_dump($statement);
+echo "get_class_methods(\$statement):</br>";
+var_dump(get_class_methods($statement));
+echo "</pre></br><pre><strong>\$data:</strong></br>";
+var_dump($data);
+echo "get_class_methods(\$data):</br>";
+var_dump(get_class_methods($data));
+echo "</pre>";
+$dbVars = get_class_vars($db);
+$dbMeths = get_class_methods($db);
+var_dump($dbMeths);
+?>
