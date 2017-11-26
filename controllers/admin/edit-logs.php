@@ -34,8 +34,16 @@ If (isset($_GET['id']) AND $_SERVER['REQUEST_METHOD'] != 'POST')	{
 	$id = htmlentities($_GET['id']);
 	$statement = $logTable->getLogToEdit($id);
 	$row = $statement->fetchObject();
-	include_once "views/admin/functions.php";		
-	$edit_logs = showEditLogForm($row);		
+	//include_once "views/admin/functions.php";		
+	//$edit_logs = showEditLogForm($row);
+	//part of code-experiment
+	
+	
+//$edit_logs = "<pre><strong>\$row:</strong></br>var_dump(\$row):</br>";
+var_dump(get_object_vars($row));
+echo "</br></br>";
+var_dump($row);
+	
 	return $edit_logs;
 
 }
