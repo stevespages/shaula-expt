@@ -24,8 +24,10 @@ If ($_SERVER['REQUEST_METHOD'] == 'POST')	{
 	$image_description_4 = htmlentities($_POST['image_description_4']);
 	$image_description_5 = htmlentities($_POST['image_description_5']);
 	
-	$logTable->saveLog($place_from, $place_to, $on_board, $depart, $arrive, $distance, $description, $image_1, $image_2, $image_3, $image_4, $image_5, $image_description_1, $image_description_2, $image_description_3, $image_description_4, $image_description_5);
-	$upload_log = "<p>your log entry has been saved. Why not head over to the main site and click on the log page just to make sure</p>";
+	// $upload log = added for debugging. Remove and uncomment line below it..
+	$upload_log = $logTable->saveLog($place_from, $place_to, $on_board, $depart, $arrive, $distance, $description, $image_1, $image_2, $image_3, $image_4, $image_5, $image_description_1, $image_description_2, $image_description_3, $image_description_4, $image_description_5);
+	//$upload_log = "<p>your log entry has been saved. Why not head over to the main site and click on the log page just to make sure</p>";
+
 }	else {	
 		include_once "views/admin/functions.php";
 		$upload_log = showLogForm();
