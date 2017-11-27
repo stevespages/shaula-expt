@@ -5,11 +5,26 @@
 	
 If ($_SERVER['REQUEST_METHOD'] == 'POST')	{
 	include_once "models/Log_Table.class.php";
+	include_once "models/table-fields.php";
 	$logTable = new LogTable($db);
+	
+	
+	$posted_array = array();
+	
+	foreach($log_fields_array as $key => $value) {
+		$posted_array[$value] = $_POST[$value];
+	}
+
+	
+	//var_dump($posted_array);
+	
+	/*
 	$place_from = htmlentities($_POST['place_from']);
 	$place_to = htmlentities($_POST['place_to']);
 	$on_board = htmlentities($_POST['on_board']);
 	$depart = htmlentities($_POST['depart']);
+	*/
+	/*
 	$arrive = htmlentities($_POST['arrive']);
 	$distance = htmlentities($_POST['distance']);
 	$description = htmlentities($_POST['description']);
@@ -23,12 +38,31 @@ If ($_SERVER['REQUEST_METHOD'] == 'POST')	{
 	$image_description_3 = htmlentities($_POST['image_description_3']);
 	$image_description_4 = htmlentities($_POST['image_description_4']);
 	$image_description_5 = htmlentities($_POST['image_description_5']);
+	*/
 	
-	$logTable->saveLog($place_from, $place_to, $on_board, $depart, $arrive, $distance, $description, $image_1, $image_2, $image_3, $image_4, $image_5, $image_description_1, $image_description_2, $image_description_3, $image_description_4, $image_description_5);
+	//$logTable->saveLog($place_from, $place_to, $on_board, $depart, $arrive, $distance, $description, $image_1, $image_2, $image_3, $image_4, $image_5, $image_description_1, $image_description_2, $image_description_3, $image_description_4, $image_description_5);
+	
+	$logTable->saveLog($posted_array);	
+		
 	$upload_log = "<p>your log entry has been saved. Why not head over to the main site and click on the log page just to make sure</p>";
-}	else {	
+
+}	else {
+		include_once "models/table-fields.php";
 		include_once "views/admin/functions.php";
-		$upload_log = showLogForm();
+		include_once "models/functions.php";
+		
+		$action = "'admin.php?page=upload-log'";
+		
+		$log_form_array = array();
+		
+		$log_form_array = createFormArray($log_fields_array);
+		
+		//$upload_log = $log_form_array['place_from']['input_value'];
+		
+		$upload_log = showLogForm($action, $log_form_array);
+		
+		
+		//var_dump($log_form_array);
 }
 
 return $upload_log;

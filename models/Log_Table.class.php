@@ -22,12 +22,49 @@ class LogTable extends Table{
    
 	}
 
-
+/*
 	public function saveLog ($place_from, $place_to, $on_board, $depart, $arrive, $distance, $description, $image_1, $image_2, $image_3, $image_4, $image_5, $image_description_1, $image_description_2, $image_description_3, $image_description_4, $image_description_5)	{
 		
 		$sql = "INSERT INTO log (place_from, place_to, on_board, depart, arrive, distance, description, image_1, image_2, image_3, image_4, image_5, image_description_1, image_description_2, image_description_3, image_description_4, image_description_5) VALUES ('$place_from', '$place_to', '$on_board', '$depart', '$arrive', '$distance', '$description', '$image_1', '$image_2', '$image_3', '$image_4', '$image_5', '$image_description_1', '$image_description_2', '$image_description_3', '$image_description_4', '$image_description_5')";
 		
 		$this->makeStatement($sql);
+	
+	}
+
+	
+		public function saveLog ($place_from, $place_to, $on_board, $depart)	{
+		
+		$sql = "INSERT INTO log (place_from, place_to, on_board, depart) VALUES ('$place_from', '$place_to', '$on_board', '$depart')";
+		
+		$this->makeStatement($sql);
+	
+	}
+*/	
+
+
+//INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);
+	
+	public function saveLog ($posted_array)	{
+		
+		$fields = "";
+		$values = "";
+		foreach($posted_array as $key => $value) {
+			$fields .= $key.", ";
+			$values .= $value.", ";
+		}
+		
+		$fields = substr($fields, 0, -2);
+		$values = substr($values, 0, -2);
+		
+		//get rid of the trailing comma
+		//$result = substr($result,0,-1);
+		
+		
+		$sql = "INSERT INTO log ($fields) VALUES ($values)";
+		
+		$this->makeStatement($sql);
+		
+		return $sql;
 	
 	}
 

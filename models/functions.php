@@ -12,3 +12,11 @@ function uploadManualFile() {
 			return "<p>something went wrong with file upload";
 		}
 }
+
+function createFormArray($fields_array) {
+	$form_array = array();
+	foreach($fields_array as $key => $value) {
+		$form_array[$value] = array ("input_value" => "xyz", "error_mssg" => "");
+	}
+	return $form_array;
+}

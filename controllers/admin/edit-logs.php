@@ -35,7 +35,7 @@ If (isset($_GET['id']) AND $_SERVER['REQUEST_METHOD'] != 'POST')	{
 	$statement = $logTable->getLogToEdit($id);
 	$row = $statement->fetchObject();
 	include_once "views/admin/functions.php";
-	$row = get_object_vars($row);
+	//$row = get_object_vars($row);
 	$edit_logs = showEditLogForm($row);
 	
 //var_dump(get_object_vars($row));

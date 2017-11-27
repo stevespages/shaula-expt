@@ -3,6 +3,7 @@
  * views/admin/functions.php
  */
 
+/*
 function showLogForm()	{
 	$log_form = "<form method='post' enctype='multipart/form-data' action='admin.php?page=upload-log'>
 			<p><label>Place from <input type='text' name='place_from'></label></p>
@@ -27,30 +28,17 @@ function showLogForm()	{
 			</form>";
 	return $log_form;
 }
+*/
 
-function showEditLogForm($row)	{
-	$edit_log_form = "<form method='post' enctype='multipart/form-data' action='admin.php?page=edit-logs&edit-id=$row->id'>
-			<p><label>Place from <input type='text' name='place_from' value='$row->place_from'></label></p>
-			<p><label>Place to <input type='text' name='place_to' value='$row->place_to'></label></p>
-			<p><label>On Board <input type='text' name='on_board' value='$row->on_board'></label></p>
-			<p><label>Depart <input type='text' name='depart' value='$row->depart'></label></p>
-			<p><label>Arrive <input type='text' name='arrive' value='$row->arrive'></label></p>
-			<p><label>Distance <input type='text' name='distance' value='$row->distance'></label></p>
-			<p><label>Description <input type='text' name='description' value='$row->description'></label></p>
-			<p><label>Image 1 <input type='file' name='image_1' value='$row->image_1'></label></p>
-			<p><label>Image 2 <input type='file' name='image_2' value='$row->image_2'></label></p>
-			<p><label>Image 3 <input type='file' name='image_3' value='$row->image_3'></label></p>
-			<p><label>Image 4 <input type='file' name='image_4' value='$row->image_4'></label></p>
-			<p><label>Image 5 <input type='file' name='image_5' value='$row->image_5'></label></p>
-			<p><label>Image description 1 <input type='text' name='image_description_1' value='$row->image_description_1'></label></p>
-			<p><label>Image description 2 <input type='text' name='image_description_2' value='$row->image_description_2'></label></p>
-			<p><label>Image description 3 <input type='text' name='image_description_3' value='$row->image_description_3'></label></p>
-			<p><label>Image description 4 <input type='text' name='image_description_4' value='$row->image_description_4'></label></p>
-			<p><label>Image description 5 <input type='text' name='image_description_5' value='$row->image_description_5'></label></p>
-			
+function showLogForm($action, $log_fields_array)	{
+	$log_form = "<form method='post' enctype='multipart/form-data' action=".$action.">
+			<p><label>Place from <input type='text' name='place_from' value='".$log_fields_array['place_from']['input_value']."'></label></p>
+			<p><label>Place to <input type='text' name='place_to' value='".$log_fields_array['place_to']['input_value']."'></label></p>
+			<p><label>On Board <input type='text' name='on_board' value='".$log_fields_array['on_board']['input_value']."'></label></p>
+			<p><label>Depart <input type='text' name='depart' value='".$log_fields_array['depart']['input_value']."'></label></p>
 			<p><input type='submit'><p>
 			</form>";
-	return $edit_log_form;
+	return $log_form;
 }
 
 function showManualForm()	{
