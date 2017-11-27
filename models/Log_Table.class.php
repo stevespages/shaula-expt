@@ -47,18 +47,15 @@ class LogTable extends Table{
 	public function saveLog ($posted_array)	{
 		
 		$fields = "";
-		$values = "";
+		$values = "'";
 		foreach($posted_array as $key => $value) {
 			$fields .= $key.", ";
-			$values .= $value.", ";
+			$values .= $value."', '";
 		}
 		
-		$fields = substr($fields, 0, -2);
-		$values = substr($values, 0, -2);
-		
 		//get rid of the trailing comma
-		//$result = substr($result,0,-1);
-		
+		$fields = substr($fields, 0, -2);
+		$values = substr($values, 0, -3);
 		
 		$sql = "INSERT INTO log ($fields) VALUES ($values)";
 		

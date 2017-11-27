@@ -30,6 +30,20 @@ function showLogForm()	{
 }
 */
 
+
+
+/*
+foreach ($rows as $row) {
+    echo $row['id'];
+    echo $row['firstname'];
+    echo $row['lastname'];
+}
+*/
+
+//functio
+
+
+
 function showLogForm($action, $log_fields_array)	{
 	$log_form = "<form method='post' enctype='multipart/form-data' action=".$action.">
 			<p><label>Place from <input type='text' name='place_from' value='".$log_fields_array['place_from']['input_value']."'></label></p>
