@@ -3,7 +3,7 @@
  * /views/admin/admin-navigation.php
  */
  
-$admin_navigation = "
+$navigation = "
 	<nav id='admin-navigation'>
 	 <a href='index.php'>Shaula home</a>
     <a href='admin.php?page=home'>Admin home</a>
@@ -16,4 +16,4 @@ $admin_navigation = "
 	</nav>
 ";
 
-return $admin_navigation;
+$smarty->assign('navigation', $navigation);

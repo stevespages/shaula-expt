@@ -52,5 +52,4 @@ $navigation .= "Log";
 
 $navigation .= "</p></nav>";
 
-
-return $navigation;
+$smarty->assign('navigation', $navigation);

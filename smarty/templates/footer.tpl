@@ -1,3 +1,3 @@
-<p>this is from index-footer.tpl</p>
+<p>this is a footer.</p>
 </body>
 </html>

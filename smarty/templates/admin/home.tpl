@@ -1,5 +1,4 @@
 
-  <body>
     
-    <p> {$admin_home} </p>
+    <p> {$home} </p>
     

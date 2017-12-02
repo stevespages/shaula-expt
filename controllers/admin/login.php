@@ -19,6 +19,8 @@ if($_SESSION['valid'] != "Yes") {
 			<p><input type='submit'><p>
 			</form></br>";
 			
-	return $login;
+	$smarty->assign('login', $login);
+			
+	//return $login;
 			
 }
