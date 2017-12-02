@@ -13,10 +13,8 @@ $smarty->setTemplateDir('/opt/lampp/htdocs/steve/shaula/smarty/templates');
 $smarty->setCompileDir('/opt/lampp/htdocs/steve/shaula/smarty/templates_c');
 $smarty->setCacheDir('/opt/lampp/htdocs/steve/shaula/smarty/cache');
 $smarty->setConfigDir('/opt/lampp/htdocs/steve/shaula/smarty/configs');
-$smarty->assign('name', 'Ned');
-$smarty->display('index.tpl');
 
-include_once "models/Page_Data.class.php";
+//include_once "models/Page_Data.class.php";
 
 //this function returns the name of the controller file. Same name is used for navigation href values and in title elements.
 function getControllerName() {
@@ -34,4 +32,4 @@ function getControllerName() {
 
 $db = new PDO("mysql:host=localhost;dbname=shaula;charset=utf8mb4", "root", "");
  
-$pageData = new Page_Data();
+//$pageData = new Page_Data();

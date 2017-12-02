@@ -3,10 +3,10 @@
  * index.php
  */
  
-include_once "front-controller.php";
+include_once "index-admin.php";
 
-$pageData->title = "Shaula";
-$pageData->addCSS("");
+//$pageData->title = "Shaula";
+//$pageData->addCSS("");
 
 
 
@@ -14,13 +14,20 @@ $pageData->addCSS("");
 $contrl = getControllerName();
 
 
-$pageData->content = include_once "views/navigation.php";
+//$pageData->content = include_once "views/navigation.php";
 
 
-$pageData->title .= ": $contrl";
+//$pageData->title .= ": $contrl";
 
-$pageData->content .= include_once "controllers/$contrl.php";	
+//$pageData->content .= include_once "controllers/$contrl.php";
+
+$smarty->display('header.tpl');
+
+include_once "controllers/$contrl.php";
+
+$smarty->display('footer.tpl');
 	
-$page = include_once "views/page.php";
+//$page = include_once "views/page.php";
 
-echo $page;
+//echo $page;
+
