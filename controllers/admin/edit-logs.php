@@ -2,7 +2,7 @@
 /*
  * controllers/admin/edit-logs.php
  */
-
+/*
 If ($_SERVER['REQUEST_METHOD'] == 'POST')	{
 	include_once "models/Log_Table.class.php";
 	$logTable = new LogTable($db);
@@ -27,6 +27,8 @@ If ($_SERVER['REQUEST_METHOD'] == 'POST')	{
 	$statement = $logTable->updateLog($id, $place_from, $place_to, $on_board, $depart, $arrive, $distance, $description, $image_1, $image_2, $image_3, $image_4, $image_5, $image_description_1, $image_description_2, $image_description_3, $image_description_4, $image_description_5);
 }
 
+$edit_logs = "well done you have edited the log";
+
 If (isset($_GET['id']) AND $_SERVER['REQUEST_METHOD'] != 'POST')	{
 	// show log form populated with values from the row with the id in $_GET[id]
 	include_once "models/Log_Table.class.php";
@@ -36,7 +38,6 @@ If (isset($_GET['id']) AND $_SERVER['REQUEST_METHOD'] != 'POST')	{
 	$row = $statement->fetchObject();
 	include_once "views/admin/functions.php";		
 	$edit_logs = showEditLogForm($row);		
-	return $edit_logs;
 
 }
 
@@ -46,4 +47,10 @@ $statement = $logTable->getAllLogs();
 include_once "views/functions.php";
 $editable = true; // this is an argument for showLogOutput() so the displayed log will be editable.
 $edit_logs = showLogOutput($statement, $editable);
-return $edit_logs;
+*/
+
+$edit_logs = "this will be the page for editing logs";
+
+$smarty->assign('edit_logs', $edit_logs);
+
+

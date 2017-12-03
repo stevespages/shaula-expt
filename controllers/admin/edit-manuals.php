@@ -8,4 +8,5 @@ $manualTable = new ManualsTable($db);
 $statement = $manualTable->getAllManuals(); 
 include_once "views/admin/functions.php";
 $edit_manuals = showManualsOutput($statement);
-return $edit_manuals;
+
+$smarty->assign('edit_manuals', $edit_manuals);

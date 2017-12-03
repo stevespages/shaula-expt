@@ -33,18 +33,4 @@ If ($_SERVER['REQUEST_METHOD'] == 'POST')	{
 		$upload_log = showLogForm();
 }
 
-return $upload_log;
-
-
-
-/*
-// Check the form data
-function validate_form() {
-    // Is my_name at least 3 characters long?
-    if (strlen($_POST['my_name']) < 3) {
-        return false;
-    } else {
-        return true;
-    }
-}
-*/
+$smarty->assign('upload_log', $upload_log);

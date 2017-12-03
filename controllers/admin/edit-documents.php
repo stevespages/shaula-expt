@@ -4,4 +4,6 @@
  */
  
  $edit_documents = "<p>this will be the page for editing documents</p>";
- return $edit_documents;
+ 
+ $smarty->assign('edit_documents', $edit_documents);
+ 

@@ -1,4 +1,2 @@
 
-    
-    <p> {$home} </p>
-    
+<div> {$home} </div>

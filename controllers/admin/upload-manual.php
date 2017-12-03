@@ -16,4 +16,5 @@
 		include_once "views/admin/functions.php";
 		$upload_manual = showManualForm();
 }
-return $upload_manual;
+
+$smarty->assign('upload_manual', $upload_manual);
