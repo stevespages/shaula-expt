@@ -21,15 +21,25 @@ class LogTable extends Table{
    return $statement;
    
 	}
-
-
-	public function saveLog ($place_from, $place_to, $on_board, $depart, $arrive, $distance, $description, $image_1, $image_2, $image_3, $image_4, $image_5, $image_description_1, $image_description_2, $image_description_3, $image_description_4, $image_description_5)	{
+	
+	
+	public function saveLog ($posted_array)	{
 		
-		$sql = "INSERT INTO log (place_from, place_to, on_board, depart, arrive, distance, description, image_1, image_2, image_3, image_4, image_5, image_description_1, image_description_2, image_description_3, image_description_4, image_description_5) VALUES ('$place_from', '$place_to', '$on_board', '$depart', '$arrive', '$distance', '$description', '$image_1', '$image_2', '$image_3', '$image_4', '$image_5', '$image_description_1', '$image_description_2', '$image_description_3', '$image_description_4', '$image_description_5')";
+		$fields = "";
+		$values = "'";
+		foreach($posted_array as $key => $value) {
+			$fields .= $key.", ";
+			$values .= $value."', '";
+		}
+		
+		//get rid of the trailing comma and space
+		$fields = substr($fields, 0, -2);
+		$values = substr($values, 0, -3);
+		
+		$sql = "INSERT INTO log ($fields) VALUES ($values)";
 		
 		$this->makeStatement($sql);
 		
-		// for debugging. Remove it..
 		return $sql;
 	
 	}

@@ -9,4 +9,5 @@ $statement = $logTable->getAllLogs();
 include_once "views/functions.php";
 $editable = false; // this is an argument for showLogOutput() so the displayed log will not be editable.
 $log = showLogOutput($statement, $editable);
+
 $smarty->assign('log', $log);
