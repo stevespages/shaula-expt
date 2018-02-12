@@ -30,6 +30,10 @@ include_once "controllers/admin/$contrl.php";
 
 $navigation = array("index.php", "admin.php", "admin.php?page=upload-log", "admin.php?page=upload-document", "admin.php?page=upload-manual", "admin.php?page=edit-logs", "admin.php?page=edit-documents", "admin.php?page=edit-manuals");
 
+if($contrl == 'login') {
+	$navigation = "";
+}
+	
 $smarty->assign('navigation', $navigation);
 
 $smarty->assign('title', $contrl);
