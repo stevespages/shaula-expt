@@ -1,30 +1,39 @@
 <?php
 /*
- * front-controller.php
+ * Contains code which is required by both index.php and admin.php.
  */
 
-//put error reporting statements here (will come after session_start() in admin.php)
+// Put error reporting statements here (will come after session_start() in...
+// ...admin.php).
 
-// set up Smarty templating system
-require('/usr/local/lib/php/Smarty/Smarty.class.php');
-$smarty = new Smarty();
-$smarty->setTemplateDir('smarty/templates');
-$smarty->setCompileDir('smarty/templates_c');
-$smarty->setCacheDir('smarty/cache');
-$smarty->setConfigDir('smarty/configs');
+include_once '../functions/functions.php';
 
-//this function returns the name of the controller file. Same name is used for navigation href values and in title elements.
-function getControllerName() {
-		//Determines if a navigation link was clicked
-	$navigationIsClicked = isset( $_GET['page'] );
-	if ( $navigationIsClicked ) {
-    	//prepare to load corresponding controller
-    	$contrl = $_GET['page'];
-	} else {
-    	//prepare to load default controller
-    	$contrl = "home";
-	}
-	return $contrl;
-}
+// CONFIG
+// Dev
+$host = '127.0.0.1';
+$db   = 'shaula';
+$charset = 'utf8mb4';
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$user = 'root';
+$pass = '';
+$opt = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+/*
+// Prod
+$host = 'dbxxxxxxxxx.db.1and1.com';
+$db   = 'dbxxxxxxxxx';
+$charset = 'utf8mb4';
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$user = 'root';
+$pass = '????????';
+$opt = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+*/
 
-$db = new PDO("mysql:host=localhost;dbname=shaula;charset=utf8mb4", "root", "");
+$pdo = new PDO("mysql:host=localhost;dbname=shaula;charset=utf8mb4", "root", "");
