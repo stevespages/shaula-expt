@@ -3,9 +3,9 @@
 include_once 'index-admin.php';
 
 // MODEL
+$navigation_names = array("Passage Log", "Contact", "Another Page");
 
 //VIEW
-
 function showLogOutput($statement, $editable)
 {
 	
@@ -95,20 +95,56 @@ function showManualsOutput($statement)
 
 function home()
 {
-$home = '<h3>Home Page</h3><p>this will be the home page</p>
+    $home = '<h3>Home Page</h3><p>this will be the home page</p>
  			<p>As of today Tu 21 Nov 2017. I am tracking this project with git. I have a mirror of the project at GitHub</p>
  			<p>As of today Mo 12 Feb 2018 I have just got back to it....';
-return $home;
+    return $home;
 }
 
-function passageLog()
+function passage_log()
 {
+	$passage_log = 'This will show the details of passages I have made including photos';
+	return $passage_log;
 }
 
 $contrl = getControllerName();
-$navigation = array("index.php", "index.php?page=log");
-$title = ucfirst($contrl);
+$navigation_links = createLinks($navigation_names);
+$navigation = createNavigation($navigation_links);
+$title = ucwords($contrl);
 $title = str_replace('-', ' ', $title);
-$content = $contrl();
-$page = include_once 'template.php';
-echo $page;
+$function_name = str_replace('-', '_', $contrl);
+$content = $function_name();
+
+// TEMPLATE
+$template = '
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shaula: '.$title.'</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+<div>'.$navigation.'
+<div class="steve-nav-bar"></div>
+<h1>Shaula</h1>
+<div class="row">
+  <div class="col-sm">'.$content.'</div>
+</div>
+
+<div class="row">
+  <div class="col-sm"></div>
+</div>
+
+</div>
+
+</body>
+</html>';
+
+echo $template;

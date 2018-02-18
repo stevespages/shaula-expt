@@ -1,7 +1,4 @@
 <?php
-/*
- * admin.php
- */
 
 session_start();
 
@@ -27,6 +24,8 @@ if($_SESSION['valid'] == "Yes") {
 		}
 		
 // MODEL
+
+$navigation = array("index.php", "admin.php", "admin.php?page=upload-log", "admin.php?page=upload-document", "admin.php?page=upload-manual", "admin.php?page=edit-logs", "admin.php?page=edit-documents", "admin.php?page=edit-manuals");
 
 $log_form_array = array ( 	"place_from" => array (
 																"input_value" => "",
@@ -61,8 +60,6 @@ $log_form_array = array ( 	"place_from" => array (
 // VIEW
 
 // CONTROLLER
-
-$navigation = array("index.php", "admin.php", "admin.php?page=upload-log", "admin.php?page=upload-document", "admin.php?page=upload-manual", "admin.php?page=edit-logs", "admin.php?page=edit-documents", "admin.php?page=edit-manuals");
 
 function login()
 { 
