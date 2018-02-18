@@ -2,6 +2,8 @@
 
 include_once 'index-admin.php';
 
+$contrl = getControllerName();
+
 // MODEL
 $navigation_names = array("Passage Log", "Contact", "Another Page");
 
@@ -103,48 +105,16 @@ function home()
 
 function passage_log()
 {
-	$passage_log = 'This will show the details of passages I have made including photos';
+	$passage_log = '<h3>Passage Log</h3><p>This will show the details of passages I have made including photos<p>';
 	return $passage_log;
 }
 
-$contrl = getControllerName();
-$navigation_links = createLinks($navigation_names);
+$navigation_links = createLinks($navigation_names, 'index.php');
 $navigation = createNavigation($navigation_links);
-$title = ucwords($contrl);
+$title = 'Shaula: '.ucwords($contrl);
 $title = str_replace('-', ' ', $title);
+$main_heading = 'Shaula';
 $function_name = str_replace('-', '_', $contrl);
 $content = $function_name();
-
-// TEMPLATE
-$template = '
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Shaula: '.$title.'</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-<div class="container-fluid">
-<div>'.$navigation.'
-<div class="steve-nav-bar"></div>
-<h1>Shaula</h1>
-<div class="row">
-  <div class="col-sm">'.$content.'</div>
-</div>
-
-<div class="row">
-  <div class="col-sm"></div>
-</div>
-
-</div>
-
-</body>
-</html>';
-
+$template = include_once 'template.php';
 echo $template;

@@ -25,7 +25,7 @@ if($_SESSION['valid'] == "Yes") {
 		
 // MODEL
 
-$navigation = array("index.php", "admin.php", "admin.php?page=upload-log", "admin.php?page=upload-document", "admin.php?page=upload-manual", "admin.php?page=edit-logs", "admin.php?page=edit-documents", "admin.php?page=edit-manuals");
+$navigation_names = array("Upload Log", "Upload Document", "Upload Manual", "Edit Logs", "Edit Documents", "Edit Manuals");
 
 $log_form_array = array ( 	"place_from" => array (
 																"input_value" => "",
@@ -83,12 +83,15 @@ function login()
 
 function home()
 {
-    $home = "<p>this will be the admin home page</p>";
+    $home = "<h3>Home Page</h3><p>this will be the admin home page</p>";
     return $home;
 }
 
-function uploadLog()
+function upload_log()
 {
+	$upload_log = '<h3>Upload Log</h3><p>This will be the page for uploading passage logs</p>';
+	return $upload_log;
+/*	
     If ($_SERVER['REQUEST_METHOD'] == 'POST')	{
 	    include_once "models/Log_Table.class.php";
 	    include_once "models/table-fields.php";
@@ -106,6 +109,7 @@ function uploadLog()
 		    $action = "'admin.php?page=upload-log'";
 		    $upload_log = showLogForm($action, $log_form_array);
     }
+*/
 }
 
 function editLogs()
@@ -115,7 +119,7 @@ function editLogs()
 }
 
 // this needs to be in getPostArrayData() in functions/functions.php...
-function uploadManual() {
+function upload_manual() {
 	$upload_dir = 'media/manuals/';
 	$upload_file = $upload_dir . basename(htmlentities($_FILES['manual_file_name']['name']));
 	if (move_uploaded_file(htmlentities($_FILES['manual_file_name']['tmp_name']), $upload_file)) {
@@ -125,7 +129,7 @@ function uploadManual() {
 		}
 }
 
-function editManuals()
+function edit_manuals()
 {
 include_once "models/Manuals_Table.class.php";
 $manualTable = new ManualsTable($db);
@@ -134,30 +138,29 @@ include_once "views/admin/functions.php";
 $edit_manuals = showManualsOutput($statement);
 }
 
-function uploadDocument()
+function upload_document()
 {
-    $upload_document = "<p>this will be the page for uploading documents</p>";
+    $upload_document = "<h3>Upload Document</h3><p>this will be the page for uploading documents</p>";
     return $upload_document;
 }
 
-function editDocuments()
+function edit_documents()
 {
-    $edit_documents = "<p>this will be the page for editing documents</p>";
+    $edit_documents = "<h3>Edit Documents</h3><p>this will be the page for editing documents</p>";
  
     return $edit_documents;
 }
 
-$content = $contrl();
 
-
+$navigation_links = createLinks($navigation_names, 'admin.php');
+$navigation = createNavigation($navigation_links);
 if($contrl == 'login') {
 	$navigation = "";
 }
-
-$title = ucfirst($contrl);
+$title = 'Shaula Admin: '.ucwords($contrl);
 $title = str_replace('-', ' ', $title);
-$content = $contrl();
-$page = include_once 'template.php';
-echo $page;
-
-
+$main_heading = 'Shaula Admin';
+$function_name = str_replace('-', '_', $contrl);
+$content = $function_name();
+$template = include_once 'template.php';
+echo $template;
