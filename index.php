@@ -17,7 +17,7 @@ function showLogOutput($statement, $editable)
 	
 		$log_output .= "<h2>".$row->place_from." to ".$row->place_to."</h2>";
 		$log_output .= "<p><strong>On board:</strong> ".$row->on_board."</p>";
-		$log_output .= "<p><strong>Depart:</strong> ".$row->depart." <strong>Arrive:</strong> ".$row->arrive. "</p>";
+		$log_output .= "<p><strong>Depart:</strong> ".$row->depart_time." ".$row->depart_date." <strong>Arrive:</strong> ".$row->arrive_time." ".$row->arrive_date. "</p>";
 		$log_output .= "<p><strong>Distance:</strong> ".$row->distance." nautical miles</p>";
 		$log_output .= "<p>".$row->description."</p>";
 	/*
@@ -97,7 +97,7 @@ function showManualsOutput($statement)
 
 function home()
 {
-    $home = '<h3>Home Page</h3><p>this will be the home page</p>
+    $home = '<p>this will be the home page</p>
  			<p>As of today Tu 21 Nov 2017. I am tracking this project with git. I have a mirror of the project at GitHub</p>
  			<p>As of today Mo 12 Feb 2018 I have just got back to it....';
     return $home;
@@ -105,15 +105,19 @@ function home()
 
 function passage_log()
 {
-	$passage_log = '<h3>Passage Log</h3><p>This will show the details of passages I have made including photos<p>';
+	global $pdo;
+	//$passage_log = '<p>This will show the details of passages I have made including photos<p>';
+	$statement = getAll('log', $pdo);
+	//$passage_log = createTable($statement);
+	$passage_log = showLogOutput($statement, false);
 	return $passage_log;
 }
 
 $navigation_links = createLinks($navigation_names, 'index.php');
 $navigation = createNavigation($navigation_links);
-$title = 'Shaula: '.ucwords($contrl);
-$title = str_replace('-', ' ', $title);
 $main_heading = 'Shaula';
+$sub_heading = ucwords(str_replace('-', ' ', $contrl));
+$title = 'Shaula: '.$sub_heading;
 $function_name = str_replace('-', '_', $contrl);
 $content = $function_name();
 $template = include_once 'template.php';

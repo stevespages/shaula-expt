@@ -19,7 +19,7 @@ $template = '
 <div class="steve-nav-bar"></div>
 <h1>'.$main_heading.'</h1>
 <div class="row">
-  <div class="col-sm">'.$content.'</div>
+  <div class="col-sm"><h3>'.$sub_heading.'</h3>'.$content.'</div>
 </div>
 
 <div class="row">
