@@ -107,6 +107,96 @@ $log_form_array = array ( 	"place_from" => array (
 																"form_label" => "Description",
 																"type" => "text",
 																"validate" => "text"
+																),
+									"image_1"	=>	array		(
+																"name" => "image_1",
+																"required" => "",
+																"value" => "",
+																"error_mssg" => "",
+																"form_label" => "Image 1",
+																"type" => "text",
+																"validate" => "text"
+																),
+									"image_2"	=>	array		(
+																"name" => "image_2",
+																"required" => "",
+																"value" => "",
+																"error_mssg" => "",
+																"form_label" => "Image 2",
+																"type" => "text",
+																"validate" => "text"
+																),
+									"image_3"	=>	array		(
+																"name" => "image_3",
+																"required" => "",
+																"value" => "",
+																"error_mssg" => "",
+																"form_label" => "Image 3",
+																"type" => "text",
+																"validate" => "text"
+																),
+									"image_4"	=>	array		(
+																"name" => "image_4",
+																"required" => "",
+																"value" => "",
+																"error_mssg" => "",
+																"form_label" => "Image 4",
+																"type" => "text",
+																"validate" => "text"
+																),
+									"image_5"	=>	array		(
+																"name" => "image_5",
+																"required" => "",
+																"value" => "",
+																"error_mssg" => "",
+																"form_label" => "Image 5",
+																"type" => "text",
+																"validate" => "text"
+																),
+									"image_description_1"	=>	array		(
+																"name" => "image_description_1",
+																"required" => "",
+																"value" => "",
+																"error_mssg" => "",
+																"form_label" => "Image Description 1",
+																"type" => "text",
+																"validate" => "text"
+																),
+									"image_description_2"	=>	array		(
+																"name" => "image_description_2",
+																"required" => "",
+																"value" => "",
+																"error_mssg" => "",
+																"form_label" => "Image Description 2",
+																"type" => "text",
+																"validate" => "text"
+																),
+									"image_description_3"	=>	array		(
+																"name" => "image_description_3",
+																"required" => "",
+																"value" => "",
+																"error_mssg" => "",
+																"form_label" => "Image Description 3",
+																"type" => "text",
+																"validate" => "text"
+																),
+									"image_description_4"	=>	array		(
+																"name" => "image_description_4",
+																"required" => "",
+																"value" => "",
+																"error_mssg" => "",
+																"form_label" => "Image Description 4",
+																"type" => "text",
+																"validate" => "text"
+																),
+									"image_description_5"	=>	array		(
+																"name" => "image_description_5",
+																"required" => "",
+																"value" => "",
+																"error_mssg" => "",
+																"form_label" => "Image Description 5",
+																"type" => "text",
+																"validate" => "text"
 																)
 );
 
@@ -173,15 +263,25 @@ function home()
 function upload_log()
 {
     global $log_form_array;
+    global $pdo;
+    $is_form_valid = 'false';
 
-    If ($_SERVER['REQUEST_METHOD'] == 'POST')	{
-	    $upload_log = '<p>OK you posted the form!</p>';
+    if ($_SERVER['REQUEST_METHOD'] == 'POST')	{
+	    //$upload_log = '<p>OK you posted the form!</p>';
+	    $log_form_array = assignPostToFormArray($log_form_array);
+	    $log_form_array = validateFormArray($log_form_array, $pdo, 'log');
+	    $is_form_valid = isFormValid($log_form_array);
+	 }
+	 
+	 if($is_form_valid === true) {
+	     save('log', $log_form_array, $pdo);
+	     header('Location: admin.php');
+	     //var_dump($log_form_array);
 	 }
 
-    If ($_SERVER['REQUEST_METHOD'] != 'POST')	{
+    if ($_SERVER['REQUEST_METHOD'] != 'POST' || $is_form_valid != true)	{
 	    $action = "'admin.php?page=upload-log'";
 	    $upload_log = showForm($action, $log_form_array);
-	    $action = "'admin.php?page=upload_log'";
     }
 
     return $upload_log;
