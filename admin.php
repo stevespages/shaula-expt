@@ -273,12 +273,14 @@ function upload_log()
 	    $is_form_valid = isFormValid($log_form_array);
 	 }
 	 
+	 // && $is_file_upload_valid === true;
 	 if($is_form_valid === true) {
 	     save('log', $log_form_array, $pdo);
 	     header('Location: admin.php');
 	     //var_dump($log_form_array);
 	 }
 
+    // || $is_file_upload_valid != true
     if ($_SERVER['REQUEST_METHOD'] != 'POST' || $is_form_valid != true)	{
 	    $action = "'admin.php?page=upload-log'";
 	    $upload_log = showForm($action, $log_form_array);
